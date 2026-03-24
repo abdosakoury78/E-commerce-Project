@@ -1,0 +1,66 @@
+{
+    "categories": [
+        { "id": 1, "name": "Electronics" },
+        { "id": 2, "name": "Accessories" },
+        { "id": 3, "name": "Footwear" },
+        { "id": 4, "name": "Home & Kitchen" },
+        { "id": 5, "name": "Sports & Fitness" }
+    ],
+
+    "products": [
+        {
+        "id": 1,
+        "title": "Wireless Headphones",
+        "price": 120,
+        "categoryId": 1,
+        "image": "assets/products/wireless_headphones.webp",
+        "stock": 25,
+        "rating": 4.5,
+        "description": "High-quality wireless headphones with noise cancellation"
+        },
+        {
+        "id": 2,
+        "title": "Smartphone",
+        "price": 699,
+        "categoryId": 1,
+        "image": "assets/products/smartphones.webp",
+        "stock": 15,
+        "rating": 4.7,
+        "description": "Latest model smartphone with AMOLED display"
+        },
+        {
+        "id": 3,
+        "title": "Smartwatch",
+        "price": 199,
+        "categoryId": 2,
+        "image": "assets/products/smartwatch.webp",
+        "stock": 40,
+        "rating": 4.3,
+        "description": "Fitness tracking smartwatch with heart rate monitor"
+        },
+        {
+        "id": 4,
+        "title": "Sunglasses",
+        "price": 49,
+        "categoryId": 2,
+        "image": "assets/products/sunglasses.webp",
+        "stock": 50,
+        "rating": 4.1,
+        "description": "UV-protected stylish sunglasses"
+        },
+        {
+        "id": 5,
+        "title": "Running Shoes",
+        "price": 89,
+        "categoryId": 3,
+        "image": "assets/products/running-shoes.webp",
+        "stock": 30,
+        "rating": 4.6,
+        "description": "Comfortable running shoes for daily workouts"
+        }
+    ],
+
+    "users": [],
+    "cart": [],
+    "orders": []
+}

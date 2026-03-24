@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="head-section">
+        <h1>Welcome to Our E-Commerce Store</h1>
+        <p>Discover the best products at unbeatable prices!</p>
+        <button routerLink="/shop">Shop Now</button>
+    </div>
+    <div class="category-section">
+        <h2>Shop by Category</h2>
+        <div class="box">
+            <div class="category">
+                <h3>Electorics</h3>
+                <p>Latest gadgets and electronics</p>
+            </div>
+            <div class="category">
+                <h3>Electorics</h3>
+                <p>Latest gadgets and electronics</p>
+            </div>
+            <div class="category">
+                <h3>Electorics</h3>
+                <p>Latest gadgets and electronics</p>
+            </div>
+            <div class="category">
+                <h3>Electorics</h3>
+                <p>Latest gadgets and electronics</p>
+            </div>
+            <div class="category">
+                <h3>Electorics</h3>
+                <p>Latest gadgets and electronics</p>
+            </div>
+        </div>
+    </div>
+    <div class="products-section">
+        <div class="show">
+            <h2>Featured Products</h2>
+            <button routerLink="/shop">View All</button>
+        </div>
+        <div class="products" *ngIf="products && products.length > 0">
+            <div class="product" *ngFor="let product of products.slice(0, 4); trackBy: trackById">
+                <img [src]="product.image" alt="{{ product.title }}">
+                <h3>{{ product.title }}</h3>
+                <p>{{product.description}}</p>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <p>{{product.rating}}</p>
+                </div>
+                <div class="add">
+                    <p>${{ product.price }}</p>
+                    <button><i class="fa-solid fa-cart-plus" style="margin: 5px;"></i>Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="review-section">
+        <h2>Customers Reviews</h2>
+        <div class="review">
+            <div class="customer-review">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Great products and excellent customer service!"</p>
+                <h4>- John Doe</h4>
+            </div>
+            <div class="customer-review">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p>"I love shopping here! Fast delivery and quality items."</p>
+                <h4>- Jane Smith</h4>
+            </div>
+            <div class="customer-review">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Highly recommend this store for all your shopping needs."</p>
+                <h4>- Mike Johnson</h4>
+            </div>
+        </div>
+    </div>
+</div>

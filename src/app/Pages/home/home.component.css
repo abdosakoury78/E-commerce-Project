@@ -1,0 +1,242 @@
+.container {
+    /* min-height: 100vh; */
+    margin-top: 70px;
+}
+
+/* Head Section */
+.head-section {
+    /* text-align: center; */
+    padding: 50px 50px;
+    background-color: oklch(55.8% .288 302.321);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 400px;
+    height: auto;
+}
+
+.head-section h1 {
+    font-size: 45px;
+}
+
+.head-section button {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+.head-section button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Category Section */
+.category-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.category-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.category-section .box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.category-section .box .category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.category-section .box .category:hover {
+    box-shadow: 0 4px 15px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* products sections */
+.products-section {
+    padding: 50px 20px;
+}
+
+.products-section .show {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.products-section .show button {
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+.products-section .show button:hover {
+    background-color: #333;
+}
+
+/* Container for all products */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Individual product card */
+.product {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect on product card */
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Product image */
+.product img {
+  /* width: 100%; */
+  height: 180px;
+  object-fit: contain;
+  /* border-radius: 8px; */
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+
+.product img:hover {
+  transform: scale(1.05);
+}
+
+/* Product title */
+.product h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 8px 0;
+}
+
+/* Product description */
+.product p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Rating section */
+.rating {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.rating i {
+  color: #f1c40f;
+}
+
+/* Add-to-cart section */
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+/* Price */
+.add p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+/* Add button */
+.add button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .product img {
+    height: 140px;
+  }
+}
+/* Review Section */
+
+.review-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.review-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.review-section .review {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.customer-review {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.customer-review .stars {
+    color: gold;
+}

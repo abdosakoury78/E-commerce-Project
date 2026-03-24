@@ -1,0 +1,15 @@
+.container {
+    margin: 70px 0;
+}
+
+.title {
+    margin-bottom: 20px;
+    padding: 50px;
+}
+
+.products-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 50px;
+    gap: 20px;
+}
