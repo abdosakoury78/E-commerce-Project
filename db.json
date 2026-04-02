@@ -13,7 +13,7 @@
         "title": "Wireless Headphones",
         "price": 120,
         "categoryId": 1,
-        "image": "assets/products/wireless_headphones.webp",
+        "image": "assets/products/wireless_headphones.jpg",
         "stock": 25,
         "rating": 4.5,
         "description": "High-quality wireless headphones with noise cancellation"
@@ -33,7 +33,7 @@
         "title": "Smartwatch",
         "price": 199,
         "categoryId": 2,
-        "image": "assets/products/smartwatch.webp",
+        "image": "assets/products/smartwatch.jpg",
         "stock": 40,
         "rating": 4.3,
         "description": "Fitness tracking smartwatch with heart rate monitor"
@@ -57,6 +57,56 @@
         "stock": 30,
         "rating": 4.6,
         "description": "Comfortable running shoes for daily workouts"
+        },
+        {
+        "id": 6,
+        "title": "Casual Sneakers",
+        "price": 69,
+        "categoryId": 3,
+        "image": "assets/products/sneeker.jpg",
+        "stock": 35,
+        "rating": 4.4,
+        "description": "Trendy sneakers for casual wear"
+        },
+        {
+        "id": 7,
+        "title": "Blender",
+        "price": 55,
+        "categoryId": 4,
+        "image": "assets/products/blender.jpg",
+        "stock": 20,
+        "rating": 4.2,
+        "description": "High-speed kitchen blender for smoothies and shakes"
+        },
+        {
+        "id": 8,
+        "title": "Coffee Maker",
+        "price": 120,
+        "categoryId": 4,
+        "image": "assets/products/coffee.jpg",
+        "stock": 10,
+        "rating": 4.5,
+        "description": "Automatic coffee maker with programmable timer"
+        },
+        {
+        "id": 9,
+        "title": "Yoga Mat",
+        "price": 25,
+        "categoryId": 5,
+        "image": "assets/products/yoda.jpg",
+        "stock": 45,
+        "rating": 4.7,
+        "description": "Eco-friendly yoga mat for home workouts"
+        },
+        {
+        "id": 10,
+        "title": "Dumbbell Set",
+        "price": 150,
+        "categoryId": 5,
+        "image": "assets/products/dumbell.jpg",
+        "stock": 12,
+        "rating": 4.6,
+        "description": "Adjustable dumbbell set for strength training"
         }
     ],
 
