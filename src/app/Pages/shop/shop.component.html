@@ -14,7 +14,7 @@
                 </select>
             </div>
             <div class="productsCont">
-                <div class="product" *ngFor="let product of products; trackBy: trackById">
+                <div class="product" *ngFor="let product of products.slice((pageNumber - 1) * 6, pageNumber * 6); trackBy: trackById">
                     <img [src]="product.image" alt="{{ product.title }}">
                     <h3>{{ product.title }}</h3>
                     <p>{{product.description}}</p>
@@ -30,4 +30,5 @@
             </div>
         </div>
     </div>
+    <app-pagination (pageNumber)="onPageChange($event)"></app-pagination>
 </div>

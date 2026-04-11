@@ -1,0 +1,40 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.page-btn,
+.page-number {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+/* Hover */
+.page-btn:hover,
+.page-number:hover {
+  background-color: #ddd;
+}
+
+/* Active page */
+.page-number.active {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+/* Disabled */
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -68,10 +68,6 @@
   transition: transform 0.3s;
 }
 
-.product img:hover {
-  transform: scale(1.05);
-}
-
 /* Product title */
 .product h3 {
   font-size: 1.1rem;

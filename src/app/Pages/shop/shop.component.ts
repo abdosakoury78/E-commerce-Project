@@ -3,16 +3,18 @@ import { FilterComponent } from '../../Components/filter/filter.component';
 import { Product } from '../../Model/product';
 import { ProductsService } from '../../Services/products.service';
 import { CommonModule } from '@angular/common';
+import { PaginationComponent } from '../../Components/pagination/pagination.component';
 
 @Component({
   selector: 'app-shop',
-  imports: [FilterComponent, CommonModule],
+  imports: [FilterComponent, CommonModule, PaginationComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
 export class ShopComponent implements OnInit {
 
   products: Product[] = [];
+  pageNumber : number = 1;
 
   constructor(private productsService : ProductsService) {}
   ngOnInit(): void {
@@ -28,5 +30,9 @@ export class ShopComponent implements OnInit {
 
   trackById(index: number, product: Product): number {
     return product.id;
+  }
+
+  onPageChange(page: number) {
+    this.pageNumber = page;
   }
 }
