@@ -6,11 +6,11 @@
         <app-filter></app-filter>
         <div class="products">
             <div class="select-wrapper">
-                <select name="sortedSelected" id="sortedSelected">
-                    <option value="0">Default Sorting</option>
-                    <option value="1">Sort by price: low to high</option>
-                    <option value="2">Sort by price: high to low</option>
-                    <option value="3">Sort by rating</option>
+                <select name="sortedSelected" id="sortedSelected" [(ngModel)]="sortedSelected" (change)="selectSorting()">
+                    <option value="default">Default Sorting</option>
+                    <option value="lowToHigh">Sort by price: low to high</option>
+                    <option value="highToLow">Sort by price: high to low</option>
+                    <option value="rating">Sort by rating</option>
                 </select>
             </div>
             <div class="productsCont">
