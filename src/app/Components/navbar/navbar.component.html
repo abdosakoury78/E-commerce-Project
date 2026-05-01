@@ -9,5 +9,8 @@
     <div class="cart">
         <a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
         <button class="login-btn" routerLink="/login">Login</button>
+        <div class="counter" *ngIf="count > 0">
+        {{ count }}
+        </div>
     </div>
 </nav>

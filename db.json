@@ -1,14 +1,143 @@
 {
-    "categories": [
-        { "id": 1, "name": "Electronics" },
-        { "id": 2, "name": "Accessories" },
-        { "id": 3, "name": "Footwear" },
-        { "id": 4, "name": "Home & Kitchen" },
-        { "id": 5, "name": "Sports & Fitness" }
-    ],
-
-    "products": [
-        {
+  "categories": [
+    {
+      "id": 1,
+      "name": "electronics"
+    },
+    {
+      "id": 2,
+      "name": "accessories"
+    },
+    {
+      "id": 3,
+      "name": "footwear"
+    },
+    {
+      "id": 4,
+      "name": "home"
+    },
+    {
+      "id": 5,
+      "name": "sports"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Wireless Headphones",
+      "price": 120,
+      "categoryId": 1,
+      "image": "assets/products/wireless_headphones.jpg",
+      "stock": 25,
+      "rating": 4.5,
+      "description": "High-quality wireless headphones with noise cancellation"
+    },
+    {
+      "id": 2,
+      "title": "Smartphone",
+      "price": 699,
+      "categoryId": 1,
+      "image": "assets/products/smartphones.webp",
+      "stock": 15,
+      "rating": 3.7,
+      "description": "Latest model smartphone with AMOLED display"
+    },
+    {
+      "id": 3,
+      "title": "Smartwatch",
+      "price": 199,
+      "categoryId": 2,
+      "image": "assets/products/smartwatch.jpg",
+      "stock": 40,
+      "rating": 4.3,
+      "description": "Fitness tracking smartwatch with heart rate monitor"
+    },
+    {
+      "id": 4,
+      "title": "Sunglasses",
+      "price": 49,
+      "categoryId": 2,
+      "image": "assets/products/sunglasses.webp",
+      "stock": 50,
+      "rating": 2.1,
+      "description": "UV-protected stylish sunglasses"
+    },
+    {
+      "id": 5,
+      "title": "Running Shoes",
+      "price": 89,
+      "categoryId": 3,
+      "image": "assets/products/running-shoes.webp",
+      "stock": 30,
+      "rating": 4.6,
+      "description": "Comfortable running shoes for daily workouts"
+    },
+    {
+      "id": 6,
+      "title": "Casual Sneakers",
+      "price": 69,
+      "categoryId": 3,
+      "image": "assets/products/sneeker.jpg",
+      "stock": 35,
+      "rating": 4.4,
+      "description": "Trendy sneakers for casual wear"
+    },
+    {
+      "id": 7,
+      "title": "Blender",
+      "price": 55,
+      "categoryId": 4,
+      "image": "assets/products/blender.jpg",
+      "stock": 20,
+      "rating": 1.2,
+      "description": "High-speed kitchen blender for smoothies and shakes"
+    },
+    {
+      "id": 8,
+      "title": "Coffee Maker",
+      "price": 120,
+      "categoryId": 4,
+      "image": "assets/products/coffee.jpg",
+      "stock": 10,
+      "rating": 4.5,
+      "description": "Automatic coffee maker with programmable timer"
+    },
+    {
+      "id": 9,
+      "title": "Yoga Mat",
+      "price": 25,
+      "categoryId": 5,
+      "image": "assets/products/yoda.jpg",
+      "stock": 45,
+      "rating": 3.7,
+      "description": "Eco-friendly yoga mat for home workouts"
+    },
+    {
+      "id": 10,
+      "title": "Dumbbell Set",
+      "price": 150,
+      "categoryId": 5,
+      "image": "assets/products/dumbell.jpg",
+      "stock": 12,
+      "rating": 2.6,
+      "description": "Adjustable dumbbell set for strength training"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "John@gmail.com",
+      "password": "password123",
+      "address": "123 Main St, Anytown, USA",
+      "phone": "555-1234",
+      "carts": [],
+      "orders": []
+    }
+  ],
+  "cart": [
+    {
+      "product": {
         "id": 1,
         "title": "Wireless Headphones",
         "price": 120,
@@ -17,100 +146,24 @@
         "stock": 25,
         "rating": 4.5,
         "description": "High-quality wireless headphones with noise cancellation"
-        },
-        {
+      },
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "product": {
         "id": 2,
         "title": "Smartphone",
         "price": 699,
         "categoryId": 1,
         "image": "assets/products/smartphones.webp",
         "stock": 15,
-        "rating": 4.7,
+        "rating": 3.7,
         "description": "Latest model smartphone with AMOLED display"
-        },
-        {
-        "id": 3,
-        "title": "Smartwatch",
-        "price": 199,
-        "categoryId": 2,
-        "image": "assets/products/smartwatch.jpg",
-        "stock": 40,
-        "rating": 4.3,
-        "description": "Fitness tracking smartwatch with heart rate monitor"
-        },
-        {
-        "id": 4,
-        "title": "Sunglasses",
-        "price": 49,
-        "categoryId": 2,
-        "image": "assets/products/sunglasses.webp",
-        "stock": 50,
-        "rating": 4.1,
-        "description": "UV-protected stylish sunglasses"
-        },
-        {
-        "id": 5,
-        "title": "Running Shoes",
-        "price": 89,
-        "categoryId": 3,
-        "image": "assets/products/running-shoes.webp",
-        "stock": 30,
-        "rating": 4.6,
-        "description": "Comfortable running shoes for daily workouts"
-        },
-        {
-        "id": 6,
-        "title": "Casual Sneakers",
-        "price": 69,
-        "categoryId": 3,
-        "image": "assets/products/sneeker.jpg",
-        "stock": 35,
-        "rating": 4.4,
-        "description": "Trendy sneakers for casual wear"
-        },
-        {
-        "id": 7,
-        "title": "Blender",
-        "price": 55,
-        "categoryId": 4,
-        "image": "assets/products/blender.jpg",
-        "stock": 20,
-        "rating": 4.2,
-        "description": "High-speed kitchen blender for smoothies and shakes"
-        },
-        {
-        "id": 8,
-        "title": "Coffee Maker",
-        "price": 120,
-        "categoryId": 4,
-        "image": "assets/products/coffee.jpg",
-        "stock": 10,
-        "rating": 4.5,
-        "description": "Automatic coffee maker with programmable timer"
-        },
-        {
-        "id": 9,
-        "title": "Yoga Mat",
-        "price": 25,
-        "categoryId": 5,
-        "image": "assets/products/yoda.jpg",
-        "stock": 45,
-        "rating": 4.7,
-        "description": "Eco-friendly yoga mat for home workouts"
-        },
-        {
-        "id": 10,
-        "title": "Dumbbell Set",
-        "price": 150,
-        "categoryId": 5,
-        "image": "assets/products/dumbell.jpg",
-        "stock": 12,
-        "rating": 4.6,
-        "description": "Adjustable dumbbell set for strength training"
-        }
-    ],
-
-    "users": [],
-    "cart": [],
-    "orders": []
+      },
+      "quantity": 1,
+      "id": 2
+    }
+  ],
+  "order": []
 }

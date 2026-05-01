@@ -7,6 +7,8 @@ import { PaginationComponent } from '../../Components/pagination/pagination.comp
 import { FormsModule } from '@angular/forms';
 import { SortingFactory } from '../../Model/sorting';
 import { sortingType } from '../../Model/sortingType';
+import { CartService } from '../../Services/cart.service';
+import { Category } from '../../Model/Category';
 
 @Component({
   selector: 'app-shop',
@@ -17,19 +19,33 @@ import { sortingType } from '../../Model/sortingType';
 export class ShopComponent implements OnInit {
 
   products: Product[] = [];
-  // sortedProducts: Product[] = [];
+  newProducts: Product[] = [];
   pageNumber : number = 1;
   sortedSelected: sortingType = sortingType.Default;
+  categories : Category[] = [];
+  selectedCategories: string[] = [];
+  selectedRating: number[] = [];
+  selectedInStock: boolean = false;
 
-  constructor(private productsService : ProductsService) {}
+  constructor(private productsService : ProductsService,
+              private cartService : CartService
+  ) {}
   ngOnInit(): void {
     this.productsService.getProducts().subscribe({
       next: (data) => {
         this.products = data;
-        // this.sortedProducts = data;
+        this.newProducts = data;
       },
       error: (err) => {
         console.error("Error fetching products:", err);
+      }
+    })
+    this.productsService.getCategories().subscribe( {
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.error("Error fetching categories:", err);
       }
     })
   }
@@ -43,6 +59,79 @@ export class ShopComponent implements OnInit {
   }
 
   selectSorting() {
-    this.products = SortingFactory.createSorting(this.sortedSelected).selectSorting(this.products);
+    this.newProducts = SortingFactory.createSorting(this.sortedSelected).selectSorting(this.products);
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product, 1).subscribe({
+      next: (res) => {
+        console.log("Product added to cart:", res);
+      },
+      error: (err) => {
+        console.error("Error adding product to cart:", err);
+      }
+    })
+  }
+
+  filter(input: HTMLInputElement) {
+    const id = input.id;
+
+    // CATEGORY
+    if (['electronics', 'accessories', 'footwear', 'home', 'sports'].includes(id)) {
+      if (input.checked) {
+        this.selectedCategories.push(id);
+      } else {
+        this.selectedCategories = this.selectedCategories.filter(c => c !== id);
+      }
+    }
+
+    // RATING
+    if (id.startsWith('rating')) {
+      if (input.checked) {
+        this.selectedRating.push(Number(id.replace('rating', '')));
+      } else {
+        this.selectedRating = this.selectedRating.filter(r => r !== Number(id.replace('rating', '')));
+      }
+    }
+
+    // STOCK
+    if (id === 'inStock') {
+      this.selectedInStock = input.checked;
+    }
+
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    this.newProducts = this.products.filter(product => {
+
+      // Category
+      const categoryName = this.categories
+        .find(c => c.id === product.categoryId)
+        ?.name.toLowerCase();
+        console.log(categoryName);
+
+      const categoryMatch =
+        this.selectedCategories.length === 0 ||
+        this.selectedCategories.includes(categoryName || '');
+
+      // Rating
+      const ratingMatch =
+        this.selectedRating.length === 0 ||
+        this.selectedRating.some(r => product.rating >= r);
+
+      // Stock
+      const stockMatch =
+        !this.selectedInStock || product.stock > 0;
+
+      return categoryMatch && ratingMatch && stockMatch;
+    });
+  }
+
+  resetFilters() {
+    this.selectedCategories = [];
+    this.selectedRating = [];
+    this.selectedInStock = false;
+    this.newProducts = this.products;
   }
 }

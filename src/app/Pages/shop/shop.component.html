@@ -3,7 +3,7 @@
         <h1>Shop All Products</h1>
     </div>
     <div class="products-section">
-        <app-filter></app-filter>
+        <app-filter (filterChange)="filter($event)" (clearFilters)="resetFilters()"></app-filter>
         <div class="products">
             <div class="select-wrapper">
                 <select name="sortedSelected" id="sortedSelected" [(ngModel)]="sortedSelected" (change)="selectSorting()">
@@ -14,7 +14,7 @@
                 </select>
             </div>
             <div class="productsCont">
-                <div class="product" *ngFor="let product of products.slice((pageNumber - 1) * 6, pageNumber * 6); trackBy: trackById">
+                <div class="product" *ngFor="let product of newProducts.slice((pageNumber - 1) * 6, pageNumber * 6); trackBy: trackById">
                     <img [src]="product.image" alt="{{ product.title }}">
                     <h3>{{ product.title }}</h3>
                     <p>{{product.description}}</p>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="add">
                         <p>${{ product.price }}</p>
-                        <button><i class="fa-solid fa-cart-plus" style="margin: 5px;"></i>Add</button>
+                        <button (click)="addToCart(product)"><i class="fa-solid fa-cart-plus" style="margin: 5px;" ></i>Add</button>
                     </div>
                 </div>
             </div>
