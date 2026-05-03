@@ -163,6 +163,48 @@
       },
       "quantity": 1,
       "id": 2
+    },
+    {
+      "product": {
+        "id": 5,
+        "title": "Running Shoes",
+        "price": 89,
+        "categoryId": 3,
+        "image": "assets/products/running-shoes.webp",
+        "stock": 30,
+        "rating": 4.6,
+        "description": "Comfortable running shoes for daily workouts"
+      },
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "product": {
+        "id": 2,
+        "title": "Smartphone",
+        "price": 699,
+        "categoryId": 1,
+        "image": "assets/products/smartphones.webp",
+        "stock": 15,
+        "rating": 3.7,
+        "description": "Latest model smartphone with AMOLED display"
+      },
+      "quantity": 1,
+      "id": 4
+    },
+    {
+      "product": {
+        "id": 1,
+        "title": "Wireless Headphones",
+        "price": 120,
+        "categoryId": 1,
+        "image": "assets/products/wireless_headphones.jpg",
+        "stock": 25,
+        "rating": 4.5,
+        "description": "High-quality wireless headphones with noise cancellation"
+      },
+      "quantity": 1,
+      "id": 5
     }
   ],
   "order": []
