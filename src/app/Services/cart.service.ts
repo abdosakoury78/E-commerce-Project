@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { Product } from '../Model/product';
+import { Cart } from '../Model/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
 
   constructor(private httpclient: HttpClient) {}
 
-  addToCart(product: Product, quantity: number) {
+  addToCart(product: Product, quantity: number): Observable<any> {
     const cartItem = { product, quantity };
     const previous = this.cartCountSubject.value;
 
@@ -36,8 +37,28 @@ export class CartService {
   getCartCount() {
     return this.cartCount$;
   }
+
+  updateCartItem(id: number, data: Cart, type: string) {
+    const previous = this.cartCountSubject.value;
+    console.log(previous);
+
+    const newValue =
+      type === 'increase' ? previous + 1 : previous - 1;
+
+    this.cartCountSubject.next(newValue);
+
+    return this.httpclient.patch(`http://localhost:3000/cart/${id}`, data).pipe(
+      catchError(err => {
+        this.cartCountSubject.next(previous);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  deleteCartItem(id: number, quantity : number) {
+    this.cartCountSubject.next(this.cartCountSubject.value - quantity);
+    return this.httpclient.delete(`http://localhost:3000/cart/${id}`);
+  }
 }
 
-function throwError(arg0: () => any): any {
-  throw new Error('Function not implemented.');
-}
+

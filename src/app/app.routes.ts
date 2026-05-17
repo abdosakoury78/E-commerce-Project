@@ -3,11 +3,15 @@ import { HomeComponent } from './Pages/home/home.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { ShopComponent } from './Pages/shop/shop.component';
 import { CartComponent } from './Pages/cart/cart.component';
+import { SignupComponent } from './Pages/signup/signup.component';
+import { CheckoutComponent } from './Pages/checkout/checkout.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'shop', component: ShopComponent},
-    {path: 'cart', component: CartComponent}
+    {path: 'cart', component: CartComponent},
+    {path: 'signup', component: SignupComponent},
+    {path: 'checkout', component: CheckoutComponent}
 ];

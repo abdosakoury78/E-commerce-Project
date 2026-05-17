@@ -1,0 +1,111 @@
+<div class="auth-page">
+
+  <!-- LEFT PANEL -->
+  <div class="auth-panel">
+    <div class="panel-content">
+
+      <div class="brand-logo">
+        <span class="logo-icon">⬛</span>
+        <span class="logo-text">ShopNow</span>
+      </div>
+
+      <h2 class="panel-heading">Start shopping smarter.</h2>
+      <p class="panel-sub">
+        Create your account and enjoy fast checkout and deals.
+      </p>
+
+      <ul class="perks-list">
+        <li>✔ Free shipping on first order</li>
+        <li>✔ Early access to sales</li>
+        <li>✔ Wishlist & order tracking</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- RIGHT FORM -->
+  <div class="auth-form-side">
+
+    <div class="auth-form-box">
+      <h1>Create Account</h1>
+
+      <form [formGroup]="signupForm" (ngSubmit)="submit()">
+
+        <!-- Name -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" formControlName="firstName">
+          </div>
+
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" formControlName="lastName">
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" formControlName="email">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label>Password</label>
+
+          <div class="password-wrapper">
+            <input #pass type="password" formControlName="password">
+            <button type="button" class="toggle-pw" (click)="toggle(pass)">👁</button>
+          </div>
+
+          <!-- strength -->
+          <div class="strength-meter">
+            <div class="strength-bar">
+              <div class="strength-fill"
+                   [style.width]="strength.percent"
+                   [style.background]="strength.color">
+              </div>
+            </div>
+            <span class="strength-label">{{ strength.label }}</span>
+          </div>
+
+          <!-- rules -->
+          <div class="pw-instructions">
+            <p [class.pass]="strength.rules.length">✗ At least 8 characters</p>
+            <p [class.pass]="strength.rules.upper">✗ One uppercase</p>
+            <p [class.pass]="strength.rules.number">✗ One number</p>
+            <p [class.pass]="strength.rules.special">✗ One special character</p>
+          </div>
+        </div>
+
+        <!-- Confirm -->
+        <div class="form-group">
+          <label>Confirm Password</label>
+
+          <div class="password-wrapper">
+            <input #confirm type="password" formControlName="confirmPassword">
+            <button type="button" class="toggle-pw" (click)="toggle(confirm)">👁</button>
+          </div>
+
+          <p class="match-msg">
+            {{ isMatch() ? '✓ Passwords match' : '✗ Passwords do not match' }}
+          </p>
+        </div>
+
+        <!-- Terms -->
+        <label class="terms-check">
+          <input type="checkbox" formControlName="terms">
+          I agree to Terms & Privacy Policy
+        </label>
+
+        <button class="btn-submit" type="submit">
+          Create Account
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

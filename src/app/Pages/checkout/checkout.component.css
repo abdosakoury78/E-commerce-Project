@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* Layout */
+.checkout-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 30px;
+}
+
+/* Cards */
+.card,
+.summary-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.card h2,
+.summary-card h2 {
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  background: #f3f4f6;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  outline: none;
+}
+
+input:focus {
+  background: #fff;
+  border-color: #111;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Payment */
+.payment-option {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-option.selected {
+  border-color: #111;
+  background: #f9f9f9;
+}
+
+.radio-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #999;
+}
+
+.payment-option.selected .radio-dot {
+  border-color: #111;
+  background: #111;
+}
+
+/* Summary */
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.summary-item img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.summary-item-info {
+  flex: 1;
+}
+
+.summary-item-name {
+  font-weight: 600;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.total {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* Button */
+.btn-place-order {
+  width: 100%;
+  padding: 14px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-place-order:hover {
+  background: #333;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .checkout-content {
+    grid-template-columns: 1fr;
+  }
+}

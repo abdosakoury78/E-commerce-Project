@@ -9,6 +9,7 @@ import { SortingFactory } from '../../Model/sorting';
 import { sortingType } from '../../Model/sortingType';
 import { CartService } from '../../Services/cart.service';
 import { Category } from '../../Model/Category';
+import { Cart } from '../../Model/cart';
 
 @Component({
   selector: 'app-shop',
@@ -20,6 +21,7 @@ export class ShopComponent implements OnInit {
 
   products: Product[] = [];
   newProducts: Product[] = [];
+  cartItems: Cart[] = [];
   pageNumber : number = 1;
   sortedSelected: sortingType = sortingType.Default;
   categories : Category[] = [];
@@ -48,6 +50,11 @@ export class ShopComponent implements OnInit {
         console.error("Error fetching categories:", err);
       }
     })
+    this.cartService.getCartItems().subscribe({
+      next: (data) => {
+        this.cartItems = data;
+      }
+    })
   }
 
   trackById(index: number, product: Product): number {
@@ -63,14 +70,35 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: Product) {
+
+    const existingItem = this.cartItems.find(
+      item => item.product.id === product.id
+    );
+
+    if (existingItem) {
+      this.cartService.updateCartItem(existingItem.id, {
+        ...existingItem,
+        quantity: ++existingItem.quantity
+      }, "increase").subscribe({
+        next: (res) => {
+          console.log("Cart item updated:", res);
+        },
+        error: (err) => {
+          console.error("Error updating cart item:", err);
+        }
+      });
+      return;
+    }
+
     this.cartService.addToCart(product, 1).subscribe({
       next: (res) => {
         console.log("Product added to cart:", res);
+        this.cartItems.push({ product, quantity: 1, id: res.id });
       },
       error: (err) => {
-        console.error("Error adding product to cart:", err);
+        console.error("Error adding product:", err);
       }
-    })
+    });
   }
 
   filter(input: HTMLInputElement) {

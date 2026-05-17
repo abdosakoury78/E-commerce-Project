@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.auth-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* LEFT PANEL */
+.auth-panel {
+  width: 420px;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-content {
+  padding: 40px;
+}
+
+.brand-logo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.panel-heading {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.panel-sub {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+.perks-list {
+  list-style: none;
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* RIGHT SIDE */
+.auth-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form-box {
+  width: 420px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* PASSWORD */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* STRENGTH */
+.strength-bar {
+  height: 5px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.strength-fill {
+  height: 100%;
+  width: 0%;
+  transition: 0.3s;
+}
+
+.strength-label {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.pw-instructions p {
+  font-size: 12px;
+  color: #dc3545;
+}
+
+.pw-instructions p.pass {
+  color: #28a745;
+}
+
+/* TERMS */
+.terms-check {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+/* BUTTON */
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .auth-panel {
+    display: none;
+  }
+
+  .auth-form-box {
+    width: 90%;
+  }
+}
