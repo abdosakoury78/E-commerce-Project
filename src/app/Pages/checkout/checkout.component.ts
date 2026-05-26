@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../Services/cart.service';
+import { AlertComponent } from '../../Components/alert/alert.component';
 
 interface CartItem {
   product: any;
@@ -10,7 +12,7 @@ interface CartItem {
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AlertComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -20,6 +22,13 @@ export class CheckoutComponent implements OnInit {
 
   paymentMethod: 'card' | 'cod' = 'card';
 
+  // Alert things
+  isOpen = false;
+  title = '';
+  message = '';
+  type: 'success' | 'error' | 'warning' = 'success';
+
+  constructor(private cartService : CartService) {}
   form = {
     fullName: '',
     email: '',
@@ -34,6 +43,11 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     // later: load from cart service / json-server
+    this.cartService.getCartItems().subscribe({
+      next : (data) => {
+        this.cartItems = data;
+      }
+    })
   }
 
   selectPayment(method: 'card' | 'cod') {
@@ -48,11 +62,20 @@ export class CheckoutComponent implements OnInit {
   }
 
   placeOrder() {
-    console.log('Order:', {
-      form: this.form,
-      payment: this.paymentMethod,
-      items: this.cartItems,
-      total: this.total
-    });
+    if(false) {
+
+    }else {
+      this.isOpen = true;
+      this.type = 'error';
+      this.title = "Error";
+      this.message = "You're not Logged In";
+    }
+  }
+
+  closeAlert() {
+    this.isOpen = false;
+    this.title = '';
+    this.message = '';
+    this.type = 'success';
   }
 }

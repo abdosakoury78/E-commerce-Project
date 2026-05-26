@@ -1,0 +1,12 @@
+<div class="alert-overlay" *ngIf="isOpen">
+  <div class="alert-box"
+       [class.success]="type === 'success'"
+       [class.error]="type === 'error'"
+       [class.warning]="type === 'warning'">
+
+    <h2>{{ title }}</h2>
+    <p>{{ message }}</p>
+
+    <button class="btn-close" (click)="closeAlert()">OK</button>
+  </div>
+</div>

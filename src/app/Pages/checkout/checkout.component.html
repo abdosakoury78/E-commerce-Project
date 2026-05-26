@@ -142,4 +142,10 @@
 
   </div>
 
+  <app-alert
+    [isOpen]="isOpen"
+    [message]="message"
+    [title]="title"
+    [type]="type"
+    (closed)="closeAlert()"></app-alert>
 </div>

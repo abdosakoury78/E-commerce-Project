@@ -1,0 +1,188 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Overlay */
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  z-index: 9999;
+
+  animation: fadeIn 0.25s ease;
+}
+
+/* Alert Box */
+.alert-box {
+  width: 100%;
+  max-width: 400px;
+
+  background: #fff;
+  border-radius: 20px;
+
+  padding: 40px 32px 32px;
+
+  text-align: center;
+
+  border-top: 5px solid transparent;
+
+  animation: popup 0.3s ease;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Top Border Colors */
+.alert-box.success {
+  border-top-color: #22c55e;
+}
+
+.alert-box.error {
+  border-top-color: #ef4444;
+}
+
+.alert-box.warning {
+  border-top-color: #f59e0b;
+}
+
+/* Icon Circle */
+.alert-icon {
+  width: 76px;
+  height: 76px;
+
+  margin: 0 auto 22px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 34px;
+}
+
+/* Success */
+:host .success .alert-icon {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* Error */
+:host .error .alert-icon {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Warning */
+:host .warning .alert-icon {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+/* Text */
+.alert-box h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+
+  margin-bottom: 10px;
+}
+
+.alert-box p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #6b7280;
+
+  margin-bottom: 28px;
+}
+
+/* Button */
+.btn-close {
+  width: 100%;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 14px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Button Colors */
+:host .success .btn-close {
+  background: #22c55e;
+}
+
+:host .error .btn-close {
+  background: #ef4444;
+}
+
+:host .warning .btn-close {
+  background: #f59e0b;
+}
+
+/* Hover */
+.btn-close:hover {
+  filter: brightness(0.92);
+  transform: translateY(-2px);
+}
+
+.btn-close:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .alert-box {
+    padding: 32px 22px 24px;
+  }
+
+  .alert-icon {
+    width: 68px;
+    height: 68px;
+
+    font-size: 28px;
+  }
+
+  .alert-box h2 {
+    font-size: 21px;
+  }
+}
