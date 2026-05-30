@@ -4,7 +4,7 @@
     <h1>Create Account</h1>
     <p class="subtitle">Sign up to start shopping</p>
 
-    <form>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
 
       <!-- Name -->
       <div class="input-box">
@@ -14,7 +14,7 @@
           id="name"
           name="name"
           placeholder="Enter your full name"
-          required
+          formControlName="username"
         >
       </div>
 
@@ -26,7 +26,7 @@
           id="email"
           name="email"
           placeholder="Enter your email"
-          required
+          formControlName="email"
         >
       </div>
 
@@ -40,7 +40,7 @@
             id="password"
             name="password"
             placeholder="Enter your password"
-            required
+            formControlName="password"
           >
 
         </div>
@@ -56,13 +56,29 @@
             id="confirmPassword"
             name="confirmPassword"
             placeholder="Confirm your password"
-            required
+            formControlName="confirmPassword"
           >
 
         </div>
       </div>
 
-      <button class="btn-login">Create Account</button>
+      <!-- instructions -->
+      <div class="instructions">
+        <p>Email must:</p>
+        <ul>
+          <li [class.green] = "emailValid">
+            Be a valid email format (example&#64;gmail.com)
+          </li>
+        </ul>
+        <p>Password must:</p>
+        <ul>
+          <li [class.green] = "password6Chars">Be at least 6 characters long</li>
+          <li [class.green] = "passwordIncludesLetter">Include at least one letter</li>
+          <li [class.green] = "passwordIncludesNumber">Include at least one number</li>
+        </ul>
+      </div>
+
+      <button class="btn-login" [disabled]="disabled">Create Account</button>
 
     </form>
 
@@ -72,4 +88,11 @@
     </p>
 
   </div>
+
+    <app-alert
+    [isOpen]="isOpen"
+    [message]="message"
+    [title]="title"
+    [type]="type"
+    (closed)="closeAlert()"></app-alert>
 </div>

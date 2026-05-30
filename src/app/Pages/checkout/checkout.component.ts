@@ -42,7 +42,6 @@ export class CheckoutComponent implements OnInit {
   };
 
   ngOnInit() {
-    // later: load from cart service / json-server
     this.cartService.getCartItems().subscribe({
       next : (data) => {
         this.cartItems = data;

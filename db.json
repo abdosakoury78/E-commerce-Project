@@ -133,6 +133,16 @@
       "phone": "555-1234",
       "carts": [],
       "orders": []
+    },
+    {
+      "id": 2,
+      "name": "Abd Elrahman Houssam",
+      "email": "bedosakoury@gmail.com",
+      "password": "123456",
+      "address": "",
+      "phone": "",
+      "carts": [],
+      "orders": []
     }
   ],
   "cart": [
