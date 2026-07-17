@@ -10,6 +10,9 @@ import { sortingType } from '../../Model/sortingType';
 import { CartService } from '../../Services/cart.service';
 import { Category } from '../../Model/Category';
 import { Cart } from '../../Model/cart';
+import { User } from '../../Model/user';
+import { UserService } from '../../Services/user.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -28,9 +31,12 @@ export class ShopComponent implements OnInit {
   selectedCategories: string[] = [];
   selectedRating: number[] = [];
   selectedInStock: boolean = false;
+  userData : User | null = null;
 
   constructor(private productsService : ProductsService,
-              private cartService : CartService
+              private cartService : CartService,
+              private userService : UserService,
+              private authService : AuthService
   ) {}
   ngOnInit(): void {
     this.productsService.getProducts().subscribe({
@@ -50,11 +56,14 @@ export class ShopComponent implements OnInit {
         console.error("Error fetching categories:", err);
       }
     })
+    if(this.authService.isLoggedIn()) {
+      this.userData = this.userService.getUser();
+    }
     this.cartService.getCartItems().subscribe({
-      next: (data) => {
-        this.cartItems = data;
-      }
-    })
+        next: (data) => {
+          this.cartItems = data;
+        }
+      })
   }
 
   trackById(index: number, product: Product): number {
@@ -74,31 +83,30 @@ export class ShopComponent implements OnInit {
     const existingItem = this.cartItems.find(
       item => item.product.id === product.id
     );
+      if (existingItem) {
+        this.cartService.updateCartItem(existingItem.id, {
+          ...existingItem,
+          quantity: ++existingItem.quantity
+        }, "increase").subscribe({
+          next: (res) => {
+            console.log("Cart item updated:", res);
+          },
+          error: (err) => {
+            console.error("Error updating cart item:", err);
+          }
+        });
+        return;
+      }
 
-    if (existingItem) {
-      this.cartService.updateCartItem(existingItem.id, {
-        ...existingItem,
-        quantity: ++existingItem.quantity
-      }, "increase").subscribe({
+      this.cartService.addToCart(product, 1).subscribe({
         next: (res) => {
-          console.log("Cart item updated:", res);
+          console.log("Product added to cart:", res);
+          this.cartItems.push({ product, quantity: 1, id: res.id});
         },
         error: (err) => {
-          console.error("Error updating cart item:", err);
+          console.error("Error adding product:", err);
         }
       });
-      return;
-    }
-
-    this.cartService.addToCart(product, 1).subscribe({
-      next: (res) => {
-        console.log("Product added to cart:", res);
-        this.cartItems.push({ product, quantity: 1, id: res.id });
-      },
-      error: (err) => {
-        console.error("Error adding product:", err);
-      }
-    });
   }
 
   filter(input: HTMLInputElement) {

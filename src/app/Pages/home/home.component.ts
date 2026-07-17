@@ -7,6 +7,9 @@ import { Cart } from '../../Model/cart';
 
 import { ProductsService } from '../../Services/products.service';
 import { CartService } from '../../Services/cart.service';
+import { UserService } from '../../Services/user.service';
+import { AuthService } from '../../Services/auth.service';
+import { User } from '../../Model/user';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +22,13 @@ export class HomeComponent implements OnInit {
 
   products: Product[] = [];
   cartItems: Cart[] = [];
+  userData : User | null = null;
 
   constructor(
     private productsService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService : AuthService,
+    private userService : UserService
   ) {}
 
   ngOnInit(): void {
@@ -32,10 +38,15 @@ export class HomeComponent implements OnInit {
       error: (err) => console.error('Products error:', err)
     });
 
-    this.cartService.getCartItems().subscribe({
-      next: (data) => this.cartItems = data,
-      error: (err) => console.error('Cart error:', err)
-    });
+    if(this.authService.isLoggedIn()) {
+      this.userData = this.userService.getUser();
+    }else {
+      this.cartService.getCartItems().subscribe({
+        next: (data) => {
+          this.cartItems = data;
+        }
+      })
+    }
   }
 
   trackById(index: number, product: Product) {
@@ -47,40 +58,29 @@ export class HomeComponent implements OnInit {
     const existingItem = this.cartItems.find(
       item => item.product.id === product.id
     );
-
-    if (existingItem) {
-
-      const updatedItem = {
-        ...existingItem,
-        quantity: existingItem.quantity + 1
-      };
-
-      this.cartService.updateCartItem(
-        existingItem.id,
-        updatedItem,
-        "increase"
-      ).subscribe({
-        next: (res) => {
-          existingItem.quantity++; // sync UI only after success
-          console.log("Cart updated:", res);
-        },
-        error: (err) => console.error("Update error:", err)
-      });
-
-      return;
-    }
-
-    this.cartService.addToCart(product, 1).subscribe({
-      next: (res) => {
-        this.cartItems.push({
-          id: res.id,
-          product,
-          quantity: 1
+      if (existingItem) {
+        this.cartService.updateCartItem(existingItem.id, {
+          ...existingItem,
+          quantity: ++existingItem.quantity
+        }, "increase").subscribe({
+          next: (res) => {
+            console.log("Cart item updated:", res);
+          },
+          error: (err) => {
+            console.error("Error updating cart item:", err);
+          }
         });
+        return;
+      }
 
-        console.log("Product added:", res);
-      },
-      error: (err) => console.error("Add error:", err)
-    });
+      this.cartService.addToCart(product, 1).subscribe({
+        next: (res) => {
+          console.log("Product added to cart:", res);
+          this.cartItems.push({ product, quantity: 1, id: res.id});
+        },
+        error: (err) => {
+          console.error("Error adding product:", err);
+        }
+      });
   }
 }

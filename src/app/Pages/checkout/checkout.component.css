@@ -156,3 +156,12 @@ input:focus {
     grid-template-columns: 1fr;
   }
 }
+
+.btn-place-order:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-place-order:disabled:hover {
+  background: #9ca3af;
+}

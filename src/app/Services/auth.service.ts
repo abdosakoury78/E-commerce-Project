@@ -19,6 +19,11 @@ export class AuthService {
   }
 
   isLoggedIn() : boolean {
-    return !!localStorage.getItem('user');
+    return !!sessionStorage.getItem('user');
+  }
+
+  logout() {
+    sessionStorage.removeItem('user');
+    // NavbarComponent will call cartService.resetCartCount() after this
   }
 }

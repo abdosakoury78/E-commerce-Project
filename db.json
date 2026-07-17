@@ -130,36 +130,31 @@
       "email": "John@gmail.com",
       "password": "password123",
       "address": "123 Main St, Anytown, USA",
-      "phone": "555-1234",
-      "carts": [],
-      "orders": []
+      "phone": "555-1234"
     },
     {
       "id": 2,
       "name": "Abd Elrahman Houssam",
       "email": "bedosakoury@gmail.com",
-      "password": "123456",
+      "password": "amv3bdo",
       "address": "",
-      "phone": "",
-      "carts": [],
-      "orders": []
+      "phone": ""
     }
   ],
   "cart": [
     {
       "product": {
-        "id": 1,
-        "title": "Wireless Headphones",
-        "price": 120,
+        "id": 2,
+        "title": "Smartphone",
+        "price": 699,
         "categoryId": 1,
-        "image": "assets/products/wireless_headphones.jpg",
-        "stock": 25,
-        "rating": 4.5,
-        "description": "High-quality wireless headphones with noise cancellation"
+        "image": "assets/products/smartphones.webp",
+        "stock": 15,
+        "rating": 3.7,
+        "description": "Latest model smartphone with AMOLED display"
       },
-      "quantity": 4,
+      "quantity": 2,
       "id": 1
     }
-  ],
-  "order": []
+  ]
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { CartService } from '../../Services/cart.service';
 import { Cart } from '../../Model/cart';
+import { AuthService } from '../../Services/auth.service';
+import { UserService } from '../../Services/user.service';
+import { User } from '../../Model/user';
 
 @Component({
   selector: 'app-cart',
@@ -11,15 +14,22 @@ import { Cart } from '../../Model/cart';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private cartService : CartService) {}
+  constructor(private cartService : CartService,
+              private authService : AuthService,
+              private userService : UserService
+  ) {}
 
   cartItems : Cart[] = [];
+  userData : User | null = null;
   increaseCart : boolean = false;
   decreaseCart : boolean = false;
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()) {
+      this.userData = this.userService.getUser();
+    }
     this.cartService.getCartItems().subscribe((data : Cart[]) => {
-      this.cartItems = data;
-    })
+        this.cartItems = data;
+      })
   }
 
   decreaseQty(item: Cart) {
@@ -51,14 +61,18 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeItem(item : Cart) {
-    this.cartService.deleteCartItem(item.id, item.quantity).subscribe({
-      next: (res) => {
-        console.log("Cart item deleted:", res);
-        this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);
-      }
-    })
+  removeItem(item: Cart) {
+    console.log('Removing item:', item);
+
+    this.cartService.deleteCartItem(item.id, item.quantity)
+      .subscribe({
+        next: () => {
+          console.log('Deleted:', item.id);
+          this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);
+        }
+      });
   }
+
   calculateTotal() {
     return this.cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0);
   }

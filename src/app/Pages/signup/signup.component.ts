@@ -80,10 +80,10 @@ export class SignupComponent {
     }
 
     this.authService.login(email).subscribe({
-      next: (users) => {
-
+      next: (user) => {
+        // console.log('User found:', user);
         // Email already exists
-        if (users.length > 0) {
+        if (user.length > 0) {
           this.isOpen = true;
           this.title = 'Error';
           this.message = 'User with this email already exists';
@@ -98,9 +98,7 @@ export class SignupComponent {
           email,
           password,
           address: '',
-          phone: '',
-          carts: [],
-          orders: []
+          phone: ''
         }).subscribe({
 
           next: () => {

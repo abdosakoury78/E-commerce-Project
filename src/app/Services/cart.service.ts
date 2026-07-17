@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { Product } from '../Model/product';
 import { Cart } from '../Model/cart';
 
@@ -34,13 +34,19 @@ export class CartService {
     return this.httpclient.get(this.api);
   }
 
-  getCartCount() {
+
+  getCartCount(): Observable<number> {
     return this.cartCount$;
   }
 
+
+  resetCartCount() {
+    this.cartCountSubject.next(0);
+  }
+
+
   updateCartItem(id: number, data: Cart, type: string) {
     const previous = this.cartCountSubject.value;
-    console.log(previous);
 
     const newValue =
       type === 'increase' ? previous + 1 : previous - 1;
@@ -56,9 +62,19 @@ export class CartService {
   }
 
   deleteCartItem(id: number, quantity : number) {
-    this.cartCountSubject.next(this.cartCountSubject.value - quantity);
+    let currentCount = this.cartCountSubject.value;
+    this.cartCountSubject.next(currentCount - quantity);
     return this.httpclient.delete(`http://localhost:3000/cart/${id}`);
   }
+
+  loadCartCount() {
+    this.getCartItems().subscribe(items => {
+      const count = items.reduce((sum : number, item : Cart) => sum + item.quantity, 0);
+      this.cartCountSubject.next(count);
+    });
+  }
 }
+
+
 
 

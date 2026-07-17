@@ -4,7 +4,7 @@
     <h1>Welcome Back</h1>
     <p class="subtitle">Login to continue shopping</p>
 
-    <form>
+    <form [formGroup]="loginForm" class="form-login">
 
       <div class="input-box">
         <label for="email">Email</label>
@@ -13,7 +13,7 @@
           name="email"
           id="email"
           placeholder="Enter your email"
-          required
+          formControlName="email"
         >
       </div>
 
@@ -26,12 +26,12 @@
             name="password"
             id="password"
             placeholder="Enter your password"
-            required
+            formControlName="password"
           >
         </div>
       </div>
 
-      <button class="btn-login">Login</button>
+      <button class="btn-login" [disabled]="disabled" (click)="onSubmit()">Login</button>
 
     </form>
 
@@ -41,4 +41,10 @@
     </p>
 
   </div>
+    <app-alert
+    [isOpen]="isOpen"
+    [message]="message"
+    [title]="title"
+    [type]="type"
+    (closed)="closeAlert()"></app-alert>
 </div>
