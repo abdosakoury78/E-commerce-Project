@@ -1,4 +1,5 @@
 export interface Order {
+    userId: number | undefined;
     name: string;
     email: string;
     address: string;
@@ -8,4 +9,9 @@ export interface Order {
     paymentMethod: 'card' | 'cod';
     cardNumber?: string;
     expiry?: string;
+    cvv?: string;
+    items: {
+        productId: number;
+        quantity: number;
+    }[];
 }

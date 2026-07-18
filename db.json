@@ -141,20 +141,55 @@
       "phone": ""
     }
   ],
-  "cart": [
+  "cart": [],
+  "orders": [
     {
-      "product": {
-        "id": 2,
-        "title": "Smartphone",
-        "price": 699,
-        "categoryId": 1,
-        "image": "assets/products/smartphones.webp",
-        "stock": 15,
-        "rating": 3.7,
-        "description": "Latest model smartphone with AMOLED display"
-      },
-      "quantity": 2,
+      "userId": 2,
+      "name": "Abd Elrahman Houssam",
+      "email": "bedosakoury@gmail.com",
+      "address": "Faculty of Engineering Helwan University",
+      "city": "Giza",
+      "zip": "12511",
+      "country": "Egypt",
+      "paymentMethod": "card",
+      "cardNumber": "",
+      "expiry": "",
+      "cvv": "",
+      "items": [
+        {
+          "productId": 5,
+          "quantity": 1
+        },
+        {
+          "productId": 4,
+          "quantity": 2
+        },
+        {
+          "productId": 6,
+          "quantity": 1
+        }
+      ],
       "id": 1
+    },
+    {
+      "userId": 2,
+      "name": "Abd Elrahman Houssam",
+      "email": "bedosakoury@gmail.com",
+      "address": "Faculty of Engineering Helwan University",
+      "city": "Giza",
+      "zip": "12511",
+      "country": "Egypt",
+      "paymentMethod": "card",
+      "cardNumber": "",
+      "expiry": "",
+      "cvv": "",
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 2
+        }
+      ],
+      "id": 2
     }
   ]
 }

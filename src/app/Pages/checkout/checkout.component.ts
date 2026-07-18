@@ -6,6 +6,10 @@ import { AlertComponent } from '../../Components/alert/alert.component';
 import { AuthService } from '../../Services/auth.service';
 import { UserService } from '../../Services/user.service';
 import { User } from '../../Model/user';
+import { OrderService } from '../../Services/order.service';
+import { Order } from '../../Model/order';
+import { Router } from '@angular/router';
+import { Cart } from '../../Model/cart';
 
 interface CartItem {
   product: any;
@@ -21,7 +25,7 @@ interface CartItem {
 })
 export class CheckoutComponent implements OnInit {
 
-  cartItems: CartItem[] = [];
+  cartItems: Cart[] = [];
   form : FormGroup;
   paymentMethod: 'card' | 'cod' = 'card';
   userData : User | null = null;
@@ -34,7 +38,9 @@ export class CheckoutComponent implements OnInit {
   constructor(private cartService : CartService,
               private fb : FormBuilder,
               private authService : AuthService,
-              private userService : UserService
+              private userService : UserService,
+              private orderService : OrderService,
+              private router : Router
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -45,9 +51,9 @@ export class CheckoutComponent implements OnInit {
       zip: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
       country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
 
-      cardNumber: [''],
-      expiry: [''],
-      cvv: ['']
+      cardNumber: ['', [Validators.pattern(/^\d{16}$/)]],
+      expiry: ['', [Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
+      cvv: ['', [Validators.pattern(/^\d{3}$/)]]
     });
   }
 
@@ -87,27 +93,42 @@ export class CheckoutComponent implements OnInit {
         this.message = "Please fill in all card details correctly";
         return;
       }
-      if (this.userData) {
-        // this.userData.order.push({
-        //   name: this.form.value.name,
-        //   email: this.form.value.email,
-        //   address: this.form.value.address,
-        //   city: this.form.value.city,
-        //   zip: this.form.value.zip,
-        //   country: this.form.value.country,
-        //   paymentMethod: this.paymentMethod,
-        //   cardNumber: this.paymentMethod === 'card' ? this.form.value.cardNumber : undefined,
-        //   expiry: this.paymentMethod === 'card' ? this.form.value.expiry : undefined,
-        // });
-        // this.userData.cart.forEach((cartItem) => {
-        //   this.cartService.deleteCartItem(cartItem.id, cartItem.quantity).subscribe();
-        // })
-        // this.userData.cart = [];
-        // this.isOpen = true;
-        // this.type = 'success';
-        // this.title = "Success";
-        // this.message = "Your order has been placed successfully!";
+      const order : Order = {
+        userId: this.userData?.id,
+        name: this.form.get('name')?.value,
+        email: this.form.get('email')?.value,
+        address: this.form.get('address')?.value,
+        city: this.form.get('city')?.value,
+        zip: this.form.get('zip')?.value,
+        country: this.form.get('country')?.value,
+        paymentMethod: this.paymentMethod,
+        cardNumber: this.form.get('cardNumber')?.value,
+        expiry: this.form.get('expiry')?.value,
+        cvv: this.form.get('cvv')?.value,
+        items: this.cartItems.map(item => ({
+          productId: item.product.id,
+          quantity: item.quantity
+        }))
       }
+
+      this.orderService.placeOrder(order).subscribe({
+        next: (res) => {
+          this.isOpen = true;
+          this.type = 'success';
+          this.title = "Success";
+          this.message = "Order placed successfully";
+        },
+        error: (err) => {
+          this.isOpen = true;
+          this.type = 'error';
+          this.title = "Error";
+          this.message = "Failed to place order. Please try again.";
+        },
+        complete: () => {
+          this.form.reset();
+          this.clearCart();
+        }
+      })
     }else {
       this.isOpen = true;
       this.type = 'error';
@@ -121,5 +142,18 @@ export class CheckoutComponent implements OnInit {
     this.title = '';
     this.message = '';
     this.type = 'success';
+  }
+
+  clearCart() {
+    this.cartItems.forEach(item => {
+      this.cartService.deleteCartItem(item.id, item.quantity)
+        .subscribe({
+          next: () => {
+            this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);
+          }
+        });
+    })
+    this.cartService.resetCartCount();
+    // this.router.navigate(['/']);
   }
 }
