@@ -137,8 +137,8 @@
       "name": "Abd Elrahman Houssam",
       "email": "bedosakoury@gmail.com",
       "password": "amv3bdo",
-      "address": "",
-      "phone": ""
+      "address": "Faculty of Engineering Helwan University",
+      "phone": "01100155013"
     }
   ],
   "cart": [],
@@ -190,6 +190,26 @@
         }
       ],
       "id": 2
+    },
+    {
+      "userId": 2,
+      "name": "Abd Elrahman Houssam",
+      "email": "bedosakoury@gmail.com",
+      "address": "Faculty of Engineering Helwan University",
+      "city": "Giza",
+      "zip": "12511",
+      "country": "Egypt",
+      "paymentMethod": "cod",
+      "cardNumber": "",
+      "expiry": "",
+      "cvv": "",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1
+        }
+      ],
+      "id": 3
     }
   ]
 }

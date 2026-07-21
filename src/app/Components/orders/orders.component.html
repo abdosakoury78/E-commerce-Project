@@ -1,0 +1,65 @@
+<div class="card">
+
+  <div class="card-header">
+    <div class="identity">
+      <div class="avatar">
+        {{ user?.name.charAt(0) }}
+      </div>
+      <div>
+        <h2>Order History</h2>
+        <p class="card-subtitle">Track and review your past orders</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="orders-loading" *ngIf="loading">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    Loading your orders...
+  </div>
+
+  <!-- Error -->
+  <div class="empty-state" *ngIf="!loading && error">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <h3>Something went wrong</h3>
+    <p>We couldn't load your orders. Please try again later.</p>
+  </div>
+
+  <!-- Empty -->
+  <div class="empty-state" *ngIf="!loading && !error && orders.length === 0">
+    <i class="fa-solid fa-box-open"></i>
+    <h3>No orders yet</h3>
+    <p>Items you purchase will show up here.</p>
+  </div>
+
+  <!-- Real orders -->
+  <div class="order-list" *ngIf="!loading && !error && orders.length > 0">
+    <div class="order-card" *ngFor="let order of orders">
+
+      <div class="order-top">
+        <div>
+          <p class="order-id">Order #{{ order.id }}</p>
+          <p class="order-shipping">{{ order.address }}, {{ order.city }}, {{ order.country }}</p>
+        </div>
+        <span class="payment-badge" [class.cod]="order.paymentMethod === 'cod'">
+          {{ getPaymentLabel(order) }}
+        </span>
+      </div>
+
+      <div class="order-items">
+        <div class="order-item" *ngFor="let item of order.items">
+          <span>
+            {{ getProduct(item.productId)?.title || ('Product #' + item.productId) }}
+            <span class="qty">× {{ item.quantity }}</span>
+          </span>
+          <span>${{ (getProduct(item.productId)?.price || 0) * item.quantity }}</span>
+        </div>
+      </div>
+
+      <div class="order-total">
+        <span>Total</span>
+        <span>${{ getOrderTotal(order) }}</span>
+      </div>
+    </div>
+  </div>
+</div>

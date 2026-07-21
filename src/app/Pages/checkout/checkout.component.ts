@@ -51,9 +51,9 @@ export class CheckoutComponent implements OnInit {
       zip: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
       country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
 
-      cardNumber: ['', [Validators.pattern(/^\d{16}$/)]],
-      expiry: ['', [Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
-      cvv: ['', [Validators.pattern(/^\d{3}$/)]]
+      cardNumber: ['', [Validators.pattern(/^\d{16}$/), Validators.required]],
+      expiry: ['', [Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/), Validators.required]],
+      cvv: ['', [Validators.pattern(/^\d{3}$/), Validators.required]]
     });
   }
 
@@ -91,6 +91,13 @@ export class CheckoutComponent implements OnInit {
         this.type = 'error';
         this.title = "Error";
         this.message = "Please fill in all card details correctly";
+        return;
+      }
+      if(this.form.get('address')?.invalid || this.form.get('zip')?.invalid || this.form.get('country')?.invalid || this.form.get('city')?.invalid) {
+        this.isOpen = true;
+        this.type = 'error';
+        this.title = "Error";
+        this.message = "Please fill in all the form details";
         return;
       }
       const order : Order = {
@@ -154,6 +161,5 @@ export class CheckoutComponent implements OnInit {
         });
     })
     this.cartService.resetCartCount();
-    // this.router.navigate(['/']);
   }
 }
