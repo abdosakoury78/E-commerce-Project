@@ -13,6 +13,7 @@ import { Cart } from '../../Model/cart';
 import { User } from '../../Model/user';
 import { UserService } from '../../Services/user.service';
 import { AuthService } from '../../Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -36,7 +37,8 @@ export class ShopComponent implements OnInit {
   constructor(private productsService : ProductsService,
               private cartService : CartService,
               private userService : UserService,
-              private authService : AuthService
+              private authService : AuthService,
+              private router : Router
   ) {}
   ngOnInit(): void {
     this.productsService.getProducts().subscribe({
@@ -169,5 +171,9 @@ export class ShopComponent implements OnInit {
     this.selectedRating = [];
     this.selectedInStock = false;
     this.newProducts = this.products;
+  }
+
+  goToProductDetails(productId: number) {
+    this.router.navigate(['/shop', productId]);
   }
 }

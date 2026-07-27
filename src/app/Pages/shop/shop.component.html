@@ -15,7 +15,7 @@
             </div>
             <div class="productsCont">
                 <div class="product" *ngFor="let product of newProducts.slice((pageNumber - 1) * 6, pageNumber * 6); trackBy: trackById">
-                    <img [src]="product.image" alt="{{ product.title }}">
+                    <img [src]="product.image" alt="{{ product.title }}" (click)="goToProductDetails(product.id)">
                     <h3>{{ product.title }}</h3>
                     <p>{{product.description}}</p>
                     <div class="rating">

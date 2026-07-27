@@ -1,0 +1,93 @@
+<div class="product-container" *ngIf="product">
+
+  <button class="back-btn" type="button" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back
+  </button>
+  <div class="product-card">
+
+    <div class="product-image">
+      <img [src]="product.image" [alt]="product.title">
+    </div>
+
+    <div class="product-info">
+
+      <span class="category">
+        Category #{{ product.categoryId }}
+      </span>
+
+      <h1>{{ product.title }}</h1>
+
+      <div class="rating">
+        <i class="fa-solid fa-star"></i> {{ product.rating }} / 5
+      </div>
+
+      <p class="description">
+        {{ product.description }}
+      </p>
+
+      <div class="price">
+        ${{ product.price }}
+      </div>
+
+      <div
+        class="stock"
+        [class.in-stock]="product.stock > 0"
+        [class.out-stock]="product.stock == 0">
+
+        {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+
+        <span *ngIf="product.stock > 0">
+          ({{ product.stock }} left)
+        </span>
+
+      </div>
+
+        <div class="quantity">
+
+        <label>Quantity</label>
+
+        <div class="quantity-box">
+
+            <button
+            type="button"
+            class="qty-btn"
+            (click)="decreaseQuantity()"
+            [disabled]="quantity === 1">
+
+            <i class="fa-solid fa-minus"></i>
+
+            </button>
+
+            <span class="qty-value">
+            {{ quantity }}
+            </span>
+
+            <button
+            type="button"
+            class="qty-btn"
+            (click)="increaseQuantity()"
+            [disabled]="quantity >= product.stock">
+
+            <i class="fa-solid fa-plus"></i>
+
+            </button>
+
+        </div>
+
+        </div>
+
+      <button
+        class="add-cart"
+        [disabled]="product.stock == 0"
+        (click)="addToCart(product, quantity)">
+
+        Add to Cart
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

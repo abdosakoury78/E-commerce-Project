@@ -20,7 +20,7 @@ export class CartService {
     const cartItem = { product, quantity };
     const previous = this.cartCountSubject.value;
 
-    this.cartCountSubject.next(previous + 1);
+    this.cartCountSubject.next(previous + quantity);
 
     return this.httpclient.post(this.api, cartItem).pipe(
       catchError(err => {
@@ -45,11 +45,14 @@ export class CartService {
   }
 
 
-  updateCartItem(id: number, data: Cart, type: string) {
+  updateCartItem(id: number, data: Cart, type: string, quantity?:number) {
     const previous = this.cartCountSubject.value;
-
-    const newValue =
-      type === 'increase' ? previous + 1 : previous - 1;
+    let newValue: number;
+    if (quantity) {
+      newValue = type === 'increase' ? previous + quantity : previous - quantity;
+    }else {
+      newValue = type === 'increase' ? previous + 1 : previous - 1;
+    }
 
     this.cartCountSubject.next(newValue);
 

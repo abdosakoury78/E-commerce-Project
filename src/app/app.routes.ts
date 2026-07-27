@@ -8,12 +8,14 @@ import { CheckoutComponent } from './Pages/checkout/checkout.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { FormInformatinoComponent } from './Components/form-informatino/form-informatino.component';
 import { OrdersComponent } from './Components/orders/orders.component';
+import { ProductComponent } from './Pages/product/product.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'shop', component: ShopComponent},
+    {path: 'shop/:id', component: ProductComponent},
     {path: 'cart', component: CartComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'checkout', component: CheckoutComponent},

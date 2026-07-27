@@ -21,4 +21,17 @@ export class ProductsService {
   getCategories() : Observable<Category[]> {
     return this.http.get<Category[]>(this.apiUrl);
   }
+
+  getProductById(id : number) {
+    return this.http.get<Product>(`${this.api}/${id}`);
+  }
+
+  getCategoryById(id : number) {
+    return this.http.get<Category>(`${this.apiUrl}/${id}`);
+  }
+
+  updateProductStock(productId : number, newStock : number) {
+    const url = `${this.api}/${productId}`;
+    return this.http.patch(url, { stock: newStock });
+  }
 }

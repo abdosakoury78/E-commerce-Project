@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { Product } from '../../Model/product';
@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
     private productsService: ProductsService,
     private cartService: CartService,
     private authService : AuthService,
-    private userService : UserService
+    private userService : UserService,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -82,5 +83,10 @@ export class HomeComponent implements OnInit {
           console.error("Error adding product:", err);
         }
       });
+  }
+
+
+  goToProductDetails(productId: number) {
+    this.router.navigate(['/shop', productId]);
   }
 }
