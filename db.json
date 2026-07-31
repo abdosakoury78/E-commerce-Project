@@ -28,7 +28,7 @@
       "price": 120,
       "categoryId": 1,
       "image": "assets/products/wireless_headphones.jpg",
-      "stock": 25,
+      "stock": 23,
       "rating": 4.5,
       "description": "High-quality wireless headphones with noise cancellation"
     },
@@ -38,7 +38,7 @@
       "price": 699,
       "categoryId": 1,
       "image": "assets/products/smartphones.webp",
-      "stock": 15,
+      "stock": 14,
       "rating": 3.7,
       "description": "Latest model smartphone with AMOLED display"
     },
@@ -48,7 +48,7 @@
       "price": 199,
       "categoryId": 2,
       "image": "assets/products/smartwatch.jpg",
-      "stock": 40,
+      "stock": 38,
       "rating": 4.3,
       "description": "Fitness tracking smartwatch with heart rate monitor"
     },
@@ -141,56 +141,23 @@
       "phone": "01100155013"
     }
   ],
-  "cart": [],
-  "orders": [
+  "cart": [
     {
-      "userId": 2,
-      "name": "Abd Elrahman Houssam",
-      "email": "bedosakoury@gmail.com",
-      "address": "Faculty of Engineering Helwan University",
-      "city": "Giza",
-      "zip": "12511",
-      "country": "Egypt",
-      "paymentMethod": "card",
-      "cardNumber": "",
-      "expiry": "",
-      "cvv": "",
-      "items": [
-        {
-          "productId": 5,
-          "quantity": 1
-        },
-        {
-          "productId": 4,
-          "quantity": 2
-        },
-        {
-          "productId": 6,
-          "quantity": 1
-        }
-      ],
-      "id": 1
-    },
-    {
-      "userId": 2,
-      "name": "Abd Elrahman Houssam",
-      "email": "bedosakoury@gmail.com",
-      "address": "Faculty of Engineering Helwan University",
-      "city": "Giza",
-      "zip": "12511",
-      "country": "Egypt",
-      "paymentMethod": "card",
-      "cardNumber": "",
-      "expiry": "",
-      "cvv": "",
-      "items": [
-        {
-          "productId": 2,
-          "quantity": 2
-        }
-      ],
+      "product": {
+        "id": 6,
+        "title": "Casual Sneakers",
+        "price": 69,
+        "categoryId": 3,
+        "image": "assets/products/sneeker.jpg",
+        "stock": 35,
+        "rating": 4.4,
+        "description": "Trendy sneakers for casual wear"
+      },
+      "quantity": 1,
       "id": 2
-    },
+    }
+  ],
+  "orders": [
     {
       "userId": 2,
       "name": "Abd Elrahman Houssam",
@@ -206,10 +173,34 @@
       "items": [
         {
           "productId": 1,
-          "quantity": 1
+          "quantity": 2
         }
       ],
-      "id": 3
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "name": "Abd Elrahman Houssam",
+      "email": "bedosakoury@gmail.com",
+      "address": "Faculty of Engineering Helwan University",
+      "city": "Giza",
+      "zip": "12511",
+      "country": "Egypt",
+      "paymentMethod": "cod",
+      "cardNumber": "",
+      "expiry": "",
+      "cvv": "",
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 2
+        }
+      ],
+      "id": 2
     }
   ]
 }

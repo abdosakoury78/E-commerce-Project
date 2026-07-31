@@ -10,11 +10,12 @@ import { CartService } from '../../Services/cart.service';
 import { UserService } from '../../Services/user.service';
 import { AuthService } from '../../Services/auth.service';
 import { User } from '../../Model/user';
+import { AlertComponent } from '../../Components/alert/alert.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, AlertComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -23,7 +24,11 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   cartItems: Cart[] = [];
   userData : User | null = null;
-
+  // Alert things
+  isOpen = false;
+  title = '';
+  message = '';
+  type: 'success' | 'error' | 'warning' = 'success';
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
@@ -59,6 +64,14 @@ export class HomeComponent implements OnInit {
     const existingItem = this.cartItems.find(
       item => item.product.id === product.id
     );
+
+    if(existingItem && existingItem.quantity >= product.stock) {
+      this.isOpen = true;
+      this.title = 'Error';
+      this.message = 'Cannot add more items than available in stock.';
+      this.type = 'error';
+      return;
+    }
       if (existingItem) {
         this.cartService.updateCartItem(existingItem.id, {
           ...existingItem,
@@ -88,5 +101,12 @@ export class HomeComponent implements OnInit {
 
   goToProductDetails(productId: number) {
     this.router.navigate(['/shop', productId]);
+  }
+
+  closeAlert() {
+    this.isOpen = false;
+    this.title = '';
+    this.message = '';
+    this.type = 'success';
   }
 }

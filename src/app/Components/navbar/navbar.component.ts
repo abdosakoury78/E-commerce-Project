@@ -11,12 +11,14 @@ import { AuthService } from '../../Services/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
+
   count = 0;
+  menuOpen = false;
 
   constructor(
     private cartService: CartService,
     private authService: AuthService,
-    private router: Router   // inject Router
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -33,9 +35,18 @@ export class NavbarComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
   logout() {
     sessionStorage.removeItem('user');
     this.cartService.resetCartCount();
+    this.closeMenu();
     this.router.navigate(['/home']);
   }
 }

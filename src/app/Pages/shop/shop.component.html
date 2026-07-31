@@ -24,11 +24,18 @@
                     </div>
                     <div class="add">
                         <p>${{ product.price }}</p>
-                        <button (click)="addToCart(product)"><i class="fa-solid fa-cart-plus" style="margin: 5px;" ></i>Add</button>
+                        <button (click)="addToCart(product)" [disabled]="product.stock === 0"><i class="fa-solid fa-cart-plus" style="margin: 5px;" ></i>Add</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <app-pagination (pageNumber)="onPageChange($event)"></app-pagination>
+      <app-alert
+    [isOpen]="isOpen"
+    [message]="message"
+    [title]="title"
+    [type]="type"
+    (closed)="closeAlert()">
+  </app-alert>
 </div>

@@ -14,10 +14,11 @@ import { User } from '../../Model/user';
 import { UserService } from '../../Services/user.service';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
+import { AlertComponent } from '../../Components/alert/alert.component';
 
 @Component({
   selector: 'app-shop',
-  imports: [FilterComponent, CommonModule, PaginationComponent, CommonModule, FormsModule],
+  imports: [FilterComponent, CommonModule, PaginationComponent, CommonModule, FormsModule, AlertComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
@@ -33,6 +34,11 @@ export class ShopComponent implements OnInit {
   selectedRating: number[] = [];
   selectedInStock: boolean = false;
   userData : User | null = null;
+  // Alert things
+  isOpen = false;
+  title = '';
+  message = '';
+  type: 'success' | 'error' | 'warning' = 'success';
 
   constructor(private productsService : ProductsService,
               private cartService : CartService,
@@ -85,6 +91,13 @@ export class ShopComponent implements OnInit {
     const existingItem = this.cartItems.find(
       item => item.product.id === product.id
     );
+      if(existingItem && existingItem.quantity >= product.stock) {
+        this.isOpen = true;
+        this.title = 'Error';
+        this.message = 'Cannot add more items than available in stock.';
+        this.type = 'error';
+        return;
+      }
       if (existingItem) {
         this.cartService.updateCartItem(existingItem.id, {
           ...existingItem,
@@ -175,5 +188,12 @@ export class ShopComponent implements OnInit {
 
   goToProductDetails(productId: number) {
     this.router.navigate(['/shop', productId]);
+  }
+
+  closeAlert() {
+    this.isOpen = false;
+    this.title = '';
+    this.message = '';
+    this.type = 'success';
   }
 }

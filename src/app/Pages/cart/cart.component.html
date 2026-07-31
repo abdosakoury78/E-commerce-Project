@@ -32,7 +32,7 @@
                                 <div class="quantity-selector">
                                     <button (click)="decreaseQty(item)">-</button>
                                     <span>{{ item.quantity }}</span>
-                                    <button (click)="increaseQty(item)">+</button>
+                                    <button (click)="increaseQty(item)" [disabled]="item.quantity >= item.product.stock">+</button>
                                 </div>
 
                                 <button class="btn-remove" (click)="removeItem(item)">

@@ -10,6 +10,7 @@ import { OrderService } from '../../Services/order.service';
 import { Order } from '../../Model/order';
 import { Router } from '@angular/router';
 import { Cart } from '../../Model/cart';
+import { ProductsService } from '../../Services/products.service';
 
 interface CartItem {
   product: any;
@@ -40,7 +41,8 @@ export class CheckoutComponent implements OnInit {
               private authService : AuthService,
               private userService : UserService,
               private orderService : OrderService,
-              private router : Router
+              private router : Router,
+              private productService : ProductsService
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -124,6 +126,24 @@ export class CheckoutComponent implements OnInit {
           this.type = 'success';
           this.title = "Success";
           this.message = "Order placed successfully";
+          const updateStockItems = order.items;
+          updateStockItems.forEach(item => {
+            this.productService.getProductById(item.productId).subscribe({
+              next: (product) => {
+                const newStock = product.stock - item.quantity;
+                this.productService.updateProductStock(item.productId, newStock).subscribe({
+                  next: () =>{
+                  },
+                  error: (err) => {
+                  this.isOpen = true;
+                  this.type = 'error';
+                  this.title = "Error";
+                  this.message = "Failed to update product stock. Please try again.";
+                  }
+                })
+              }
+            })
+          })
         },
         error: (err) => {
           this.isOpen = true;
