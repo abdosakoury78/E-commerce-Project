@@ -1,97 +1,305 @@
-
 /* =========================
-   Navbar
+   NAVBAR
 ========================= */
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-    z-index: 1000;
+  z-index: 1000;
 
-    width: 100%;
-    height: 70px;
+  width: 100%;
+  height: 70px;
 
-    padding: 0 30px;
+  padding: 0 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    background-color: white;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
 
-    border-bottom: 1px solid #ddd;
-
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+
 /* =========================
-   Logo
+   LOGO
 ========================= */
 
 .logo {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .logo a {
-    color: #111;
+  color: #111;
 
-    text-decoration: none;
+  text-decoration: none;
 
-    font-size: 22px;
-    font-weight: 700;
+  font-size: 22px;
+  font-weight: 700;
 
-    transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .logo a:hover {
-    color: #666;
+  color: #666;
 }
 
+
 /* =========================
-   Desktop Links
+   DESKTOP NAVIGATION
 ========================= */
 
-.links {
+.desktop-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.desktop-links a {
+  color: #111;
+
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  transition: color 0.2s ease;
+}
+
+.desktop-links a:hover {
+  color: #666;
+}
+
+
+/* =========================
+   DESKTOP ACTIONS
+========================= */
+
+.desktop-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  flex-shrink: 0;
+}
+
+
+/* Cart */
+
+.cart-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #111;
+
+  text-decoration: none;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cart-link:hover {
+  color: #666;
+  transform: translateY(-1px);
+}
+
+
+/* Counter */
+
+.counter {
+  position: absolute;
+
+  top: -10px;
+  right: -12px;
+
+  min-width: 19px;
+  height: 19px;
+
+  padding: 0 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ef4444;
+  color: #fff;
+
+  border: 2px solid #fff;
+  border-radius: 50px;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+
+/* Profile */
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #111;
+
+  text-decoration: none;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.profile-link:hover {
+  color: #666;
+  transform: translateY(-1px);
+}
+
+
+/* Login */
+
+.login-desktop {
+  padding: 9px 17px;
+
+  border-radius: 8px;
+
+  background: #111;
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-desktop:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+
+/* Logout */
+
+.logout-desktop {
+  padding: 9px 17px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #dc2626;
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.logout-desktop:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   MOBILE ACTIONS
+========================= */
+
+.mobile-actions {
+  display: none;
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+  display: none;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .desktop-links {
+    gap: 20px;
+  }
+
+  .desktop-links a {
+    font-size: 15px;
+  }
+
+  .desktop-actions {
+    gap: 16px;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    height: 65px;
+    padding: 0 20px;
+  }
+
+
+  /* Hide desktop */
+
+  .desktop-links,
+  .desktop-actions {
+    display: none;
+  }
+
+
+  /* Show mobile actions */
+
+  .mobile-actions {
     display: flex;
     align-items: center;
-    gap: 30px;
-}
+    gap: 18px;
+  }
 
-.links a {
-    color: #111;
 
-    text-decoration: none;
-
-    font-size: 18px;
-    font-weight: 500;
-
-    transition: color 0.3s ease;
-}
-
-.links a:hover {
-    color: #666;
-}
-
-/* =========================
-   Right Side
-========================= */
-
-.navbar-actions {
-    display: flex;
-    align-items: center;
-
-    gap: 22px;
-
-    flex-shrink: 0;
-}
-
-/* =========================
-   Cart
-========================= */
-
-.icon-link {
+  .mobile-icon {
     position: relative;
 
     display: flex;
@@ -105,82 +313,24 @@
     font-size: 20px;
 
     cursor: pointer;
+  }
 
-    transition:
-        color 0.3s ease,
-        transform 0.2s ease;
-}
-
-.icon-link:hover {
+  .mobile-icon:hover {
     color: #666;
-    transform: translateY(-1px);
-}
+  }
 
-/* =========================
-   Cart Counter
-========================= */
 
-.counter {
-    position: absolute;
+  /* Mobile menu button */
 
-    top: -10px;
-    right: -12px;
-
-    min-width: 20px;
-    height: 20px;
-
-    padding: 0 5px;
-
+  .menu-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: #ff3b30;
-    color: white;
-
-    border: 2px solid white;
-    border-radius: 50px;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    line-height: 1;
-
-    box-sizing: border-box;
-}
-
-/* =========================
-   Profile
-========================= */
-
-.profile {
-    color: #111;
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    transition:
-        color 0.3s ease,
-        transform 0.2s ease;
-}
-
-.profile:hover {
-    color: #666;
-    transform: translateY(-1px);
-}
-
-/* =========================
-   Hamburger
-========================= */
-
-.menu-toggle {
-    display: none;
-
     padding: 5px;
 
-    background: transparent;
     border: none;
+    background: transparent;
 
     color: #111;
 
@@ -188,262 +338,186 @@
 
     cursor: pointer;
 
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
-}
+    transition: transform 0.3s ease;
+  }
 
-.menu-toggle:hover {
-    color: #666;
-}
-
-.menu-toggle.active {
+  .menu-toggle.active {
     transform: rotate(90deg);
+  }
+
+
+  /* Mobile dropdown */
+
+  .mobile-menu {
+    position: absolute;
+
+    top: 65px;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fff;
+
+    border-bottom: 1px solid #ddd;
+
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.08);
+
+    max-height: 0;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    transition:
+      max-height 0.35s ease,
+      opacity 0.25s ease;
+  }
+
+
+  /* Open menu */
+
+  .mobile-menu.open {
+    max-height: 220px;
+
+    opacity: 1;
+
+    pointer-events: auto;
+  }
+
+
+  /* Menu items */
+
+  .mobile-menu a,
+  .mobile-logout {
+
+    width: 100%;
+    min-height: 55px;
+
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    border: none;
+    border-bottom: 1px solid #eee;
+
+    background: transparent;
+
+    color: #111;
+
+    font-family: inherit;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transform: translateY(-8px);
+    opacity: 0;
+
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+
+  /* Animation */
+
+  .mobile-menu.open a,
+  .mobile-menu.open .mobile-logout {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+
+  .mobile-menu a:nth-child(1) {
+    transition-delay: 0.04s;
+  }
+
+  .mobile-menu a:nth-child(2) {
+    transition-delay: 0.08s;
+  }
+
+  .mobile-menu a:nth-child(3) {
+    transition-delay: 0.12s;
+  }
+
+
+  /* Hover */
+
+  .mobile-menu a:hover {
+    background: #f7f7f7;
+  }
+
+
+  /* Logout */
+
+  .mobile-logout {
+    color: #dc2626;
+  }
+
+  .mobile-logout:hover {
+    background: #fff5f5;
+  }
+
+
+  /* Menu icons */
+
+  .mobile-menu i {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 16px;
+  }
+
 }
 
-/* =========================
-   Mobile Menu
-========================= */
-
-.mobile-menu {
-    display: none;
-}
 
 /* =========================
-   Tablet
-========================= */
-
-@media (max-width: 900px) {
-
-    .navbar {
-        padding: 0 20px;
-    }
-
-    .links {
-        gap: 20px;
-    }
-
-    .links a {
-        font-size: 16px;
-    }
-
-    .navbar-actions {
-        gap: 18px;
-    }
-}
-
-/* =========================
-   Mobile
-========================= */
-
-@media (max-width: 700px) {
-
-    .navbar {
-        height: 65px;
-
-        padding: 0 20px;
-    }
-
-    /* Hide desktop links */
-
-    .links {
-        display: none;
-    }
-
-    /* Show hamburger */
-
-    .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* =========================
-       Mobile Dropdown
-    ========================= */
-
-    .mobile-menu {
-        position: absolute;
-
-        top: 65px;
-        left: 0;
-
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-
-        background-color: white;
-
-        border-bottom: 1px solid #ddd;
-
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-
-        /*
-          Hidden state
-        */
-        max-height: 0;
-
-        opacity: 0;
-
-        overflow: hidden;
-
-        pointer-events: none;
-
-        transition:
-            max-height 0.4s ease,
-            opacity 0.3s ease;
-    }
-
-    /* =========================
-       Open Menu
-    ========================= */
-
-    .mobile-menu.open {
-        max-height: 220px;
-
-        opacity: 1;
-
-        pointer-events: auto;
-    }
-
-    /* =========================
-       Menu Items
-    ========================= */
-
-    .mobile-menu a,
-    .logout-btn {
-        width: 100%;
-
-        min-height: 56px;
-
-        padding: 0 25px;
-
-        display: flex;
-        align-items: center;
-
-        gap: 12px;
-
-        box-sizing: border-box;
-
-        text-align: left;
-
-        border: none;
-        border-bottom: 1px solid #eee;
-
-        background-color: transparent;
-
-        font-family: inherit;
-
-        font-size: 17px;
-        font-weight: 500;
-
-        text-decoration: none;
-
-        cursor: pointer;
-
-        transform: translateY(-10px);
-
-        opacity: 0;
-
-        transition:
-            background-color 0.2s ease,
-            color 0.2s ease,
-            transform 0.3s ease,
-            opacity 0.3s ease;
-    }
-
-    /* Open animation */
-
-    .mobile-menu.open a,
-    .mobile-menu.open .logout-btn {
-        transform: translateY(0);
-
-        opacity: 1;
-    }
-
-    /* Staggered animation */
-
-    .mobile-menu a:nth-child(1) {
-        transition-delay: 0.05s;
-    }
-
-    .mobile-menu a:nth-child(2) {
-        transition-delay: 0.1s;
-    }
-
-    .mobile-menu .logout-btn {
-        transition-delay: 0.15s;
-    }
-
-    /* =========================
-       Normal Menu Hover
-    ========================= */
-
-    .mobile-menu a {
-        color: #111;
-    }
-
-    .mobile-menu a:hover {
-        background-color: #f7f7f7;
-        color: #333;
-    }
-
-    /* =========================
-       Logout
-    ========================= */
-
-    .logout-btn {
-        color: #dc3545;
-    }
-
-    .logout-btn:hover {
-        background-color: #fff5f5;
-        color: #b02a37;
-    }
-
-    /* Icons */
-
-    .mobile-menu i {
-        width: 20px;
-
-        text-align: center;
-
-        font-size: 16px;
-    }
-}
-
-/* =========================
-   Small Phones
+   SMALL PHONES
 ========================= */
 
 @media (max-width: 400px) {
 
-    .navbar {
-        padding: 0 15px;
-    }
+  .navbar {
+    padding: 0 15px;
+  }
 
-    .logo a {
-        font-size: 19px;
-    }
+  .logo a {
+    font-size: 19px;
+  }
 
-    .navbar-actions {
-        gap: 16px;
-    }
+  .mobile-actions {
+    gap: 15px;
+  }
 
-    .icon-link,
-    .profile,
-    .menu-toggle {
-        font-size: 19px;
-    }
+  .mobile-icon,
+  .menu-toggle {
+    font-size: 19px;
+  }
 
-    .mobile-menu a,
-    .logout-btn {
-        min-height: 52px;
+  .mobile-menu a,
+  .mobile-logout {
+    min-height: 52px;
 
-        padding: 0 20px;
+    padding: 0 20px;
 
-        font-size: 16px;
-    }
+    font-size: 15px;
+  }
+
 }
-

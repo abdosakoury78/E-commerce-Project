@@ -1,90 +1,150 @@
-
 <nav class="navbar">
 
-    <!-- Logo -->
-    <div class="logo">
-        <a routerLink="/home">E-Commerce</a>
-    </div>
-
-    <!-- Desktop Navigation -->
-    <div class="links">
-        <a routerLink="/home">Home</a>
-        <a routerLink="/products">Products</a>
-    </div>
-
-    <!-- Right Side Icons -->
-    <div class="navbar-actions">
-
-        <!-- Cart -->
-        <a routerLink="/cart" class="icon-link">
-            <i class="fa-solid fa-cart-shopping"></i>
-
-            @if (count > 0) {
-                <span class="counter">{{ count }}</span>
-            }
-        </a>
+  <!-- Logo -->
+  <div class="logo">
+    <a routerLink="/home">E-Commerce</a>
+  </div>
 
 
-        <!-- Profile -->
-        @if (isLoggedIn) {
-            <i
-                class="fa-solid fa-user profile"
-                routerLink="/profile">
-            </i>
-        }
+  <!-- Desktop Navigation -->
+  <div class="desktop-links">
+    <a routerLink="/home">Home</a>
+    <a routerLink="/shop">Products</a>
+  </div>
 
 
+  <!-- Desktop Right Side -->
+  <div class="desktop-actions">
 
-        <!-- Hamburger -->
-        <button
-            class="menu-toggle"
-            type="button"
-            (click)="toggleMenu()"
-            [class.active]="menuOpen"
-            [attr.aria-expanded]="menuOpen"
-            aria-label="Toggle navigation menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+    <!-- Cart -->
+    <a routerLink="/cart" class="cart-link">
+      <i class="fa-solid fa-cart-shopping"></i>
 
-    </div>
+      @if (count > 0) {
+        <span class="counter">{{ count }}</span>
+      }
+    </a>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" [class.open]="menuOpen">
+    @if (isLoggedIn) {
 
-        <a
-            routerLink="/home"
-            (click)="closeMenu()">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
+      <!-- Profile -->
+      <a
+        routerLink="/profile"
+        class="profile-link"
+        title="Profile">
+        <i class="fa-solid fa-user"></i>
+      </a>
 
-        <a
-            routerLink="/products"
-            (click)="closeMenu()">
-            <i class="fa-solid fa-box"></i>
-            <span>Products</span>
-        </a>
+      <!-- Logout -->
+      <button
+        type="button"
+        class="logout-desktop"
+        (click)="logout()">
+        Logout
+      </button>
 
-        @if (isLoggedIn) {
-            <button
-                type="button"
-                class="logout-btn"
-                (click)="logout()">
+    } @else {
 
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
-            </button>
-        } @else {
-            <a
-                routerLink="/login"
-                (click)="closeMenu()">
+      <!-- Login -->
+      <a
+        routerLink="/login"
+        class="login-desktop">
+        Login
+      </a>
 
-                <i class="fa-solid fa-right-to-bracket"></i>
-                <span>Login</span>
-            </a>
-        }
+    }
 
-    </div>
+  </div>
+
+
+  <!-- Mobile Actions -->
+  <div class="mobile-actions">
+
+    <!-- Cart -->
+    <a routerLink="/cart" class="mobile-icon">
+      <i class="fa-solid fa-cart-shopping"></i>
+
+      @if (count > 0) {
+        <span class="counter">{{ count }}</span>
+      }
+    </a>
+
+    <!-- Profile - Logged In Only -->
+    @if (isLoggedIn) {
+
+      <a
+        routerLink="/profile"
+        class="mobile-icon"
+        aria-label="Profile">
+        <i class="fa-solid fa-user"></i>
+      </a>
+
+    }
+
+    <!-- Menu -->
+    <button
+      type="button"
+      class="menu-toggle"
+      (click)="toggleMenu()"
+      [class.active]="menuOpen"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation menu">
+
+      <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+  </div>
+
+
+  <!-- Mobile Menu -->
+  <div
+    class="mobile-menu"
+    [class.open]="menuOpen">
+
+    <a
+      routerLink="/home"
+      (click)="closeMenu()">
+
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+
+    </a>
+
+    <a
+      routerLink="/products"
+      (click)="closeMenu()">
+
+      <i class="fa-solid fa-box"></i>
+      <span>Products</span>
+
+    </a>
+
+    @if (isLoggedIn) {
+
+      <button
+        type="button"
+        class="mobile-logout"
+        (click)="logout()">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+
+      </button>
+
+    } @else {
+
+      <a
+        routerLink="/login"
+        (click)="closeMenu()">
+
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span>Login</span>
+
+      </a>
+
+    }
+
+  </div>
 
 </nav>
-

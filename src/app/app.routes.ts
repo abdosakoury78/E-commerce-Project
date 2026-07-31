@@ -15,11 +15,11 @@ import { loggedGuard } from './Guards/logged.guard';
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
-    {path: 'login', component: LoginComponent, canActivate: [loggedGuard]},
+    {path: 'login', component: LoginComponent},
     {path: 'shop', component: ShopComponent},
     {path: 'shop/:id', component: ProductComponent},
     {path: 'cart', component: CartComponent},
-    {path: 'signup', component: SignupComponent, canActivate: [loggedGuard]},
+    {path: 'signup', component: SignupComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'profile', component: ProfileComponent, canActivate:[authGuard], children: [
         {path: '', component: FormInformatinoComponent, pathMatch: 'full'},
